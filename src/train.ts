@@ -1,5 +1,3 @@
-// G - task
-
 // function getHighestIndex(arr) {
 //   const max = [...arr].sort((a, b) => b - a)[0];
 //   return arr.indexOf(max);
@@ -9,7 +7,7 @@
 
 // H - task 
 
-function getPositive(arr) {
+function getPositive(arr: number[]) {
   let result = "";
 
   for (let i = 0; i < arr.length; i++) {

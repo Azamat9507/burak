@@ -7,16 +7,33 @@
 
 // H - task 
 
-function getPositive(arr: number[]) {
+// function getPositive(arr: number[]) {
+//   let result = "";
+
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] > 0) {
+//       result += arr[i];
+//     }
+//   }
+
+//   return result;
+// }
+
+// console.log(getPositive([1, -4, 2]));
+
+// H2 - task
+
+function getDigits(str: string): string {
   let result = "";
 
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] > 0) {
-      result += arr[i];
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] >= "0" && str[i] <= "9") {
+      result += str[i];
     }
   }
 
   return result;
 }
 
-console.log(getPositive([1, -4, 2]));
+
+console.log(getDigits("m14i1t"));

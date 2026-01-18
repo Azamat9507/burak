@@ -50,9 +50,7 @@ const memberSchema = new Schema(
       default: 0,
     },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
 export default mongoose.model("Member", memberSchema);

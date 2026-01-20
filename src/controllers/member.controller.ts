@@ -1,9 +1,8 @@
-import { Request, Response } from "express";
+import {Request, Response} from 'express';
 import { T } from "../libs/types/common";
 
-//React
 const memberController: T = {};
+// this page for  React 
 
+export default memberController;  
 
-
-export default memberController;

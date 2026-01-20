@@ -1,0 +1,1 @@
+export const MORGON_FORMAT = ':method :url :response-time [:status]\n';

@@ -1,27 +1,65 @@
-// function getHighestIndex(arr) {
-//   const max = [...arr].sort((a, b) => b - a)[0];
-//   return arr.indexOf(max);
-// }
+// Task G
+// function getHighestIndex(arr: Array<number>) {
+//   let max = arr[0];
+//   let index = 0;
 
-// console.log(getHighestIndex([5, 21, 12, 21, 8])); 
-
-// H - task 
-
-// function getPositive(arr: number[]) {
-//   let result = "";
-
-//   for (let i = 0; i < arr.length; i++) {
-//     if (arr[i] > 0) {
-//       result += arr[i];
+//   for (let i = 1; i < arr.length; i++) {
+//     if (arr[i] > max) {
+//       max = arr[i];
+//       index = i;
 //     }
 //   }
 
-//   return result;
+//   return index;
 // }
+// const result = getHighestIndex([10, 5, 50, 3, 49, 80, 99, 8]);
+// console.log(result); 
 
-// console.log(getPositive([1, -4, 2]));
 
-// H2 - task
+// Task H
+
+// function getPositive(arr: Array<number>) {
+//   let result = "";
+//      for( let i = 0; i < arr.length; i ++) {
+//          if (arr[i] > 0){
+//             result += arr[i];
+//          }
+  
+//      }
+//      return result;
+// }
+// console.log(getPositive([1, -4, 2])); 
+
+// GetNegative
+
+// function getNegative (arr: Array<number>) {
+//   let result = "";
+//      for( let i = 0; i < arr.length; i ++) {
+//          if (arr[i] < 0){
+//             result += arr[i];
+//          }
+  
+//      }
+//      return result;
+// }
+// console.log(getNegative([1,-8, 9, -10, 3, -5, -4, 2])); 
+
+
+// Task H2
+
+
+// function getDigits ( type: number[] ) {
+//   let result = "";
+//      for( let i = 0; i < type.length; i ++) {
+//          if (type[i] >= 0 && type[i] <= 9){
+//             result += type[i];
+//          }
+//      }
+//      return result;
+// }
+// console.log(getDigits   ( "m1k2j3n4b5v6c7x8z9". split("").map(Number) ));
+
+
 
 // function getDigits(str: string): string {
 //   let result = "";
@@ -35,49 +73,28 @@
 //   return result;
 // }
 
+// console.log(getDigits("m14i1t")); // "141"
+// console.log(getDigits("m1k2j3n4b5v6c7x8z9")); // "123456789"
+// console.log(getDigits("abc")); // ""
 
-// console.log(getDigits("m14i1t"));
-
-/*
-=====================================
- Loyiha Standartlari
-=====================================
-
-1) Log yozish (Logging)
-  HTTP so‘rovlar uchun morgan ishlatiladi
-  console.log faqat developmentda ishlatiladi
-  Production kodda console.log bo‘lmasligi kerak
-
-2) Nomlash qoidalari (Naming Conventions)
-  O‘zgaruvchi, funksiya, metod → camelCase
-  Class, enum, interface → PascalCase
-  Papkalar → kebab-case
-  Constantlar → UPPER_SNAKE_CASE
-  Fayllar → kebab-case.ts
-
-3) Arxitektura
-  controllers → faqat request/response
-  services → biznes mantiq
-  models/schema → ma’lumotlar bazasi qatlami
-  libs → umumiy utilitalar (errors, config, logger)
-
-4) Xatolar bilan ishlash (Error Handling)
-  Har doim custom Errors class tashlanadi (throw)
-  Oddiy (raw) error qaytarilmaydi
-  Status code uchun HttpCode enum ishlatiladi
-  Xabarlar uchun Message enum ishlatiladi
-
-5) Import qoidalari
-  src ichida absolute importlar afzal
-  Ishlatilmaydigan importlar bo‘lmasin
-  Import tartibi: node → libs → local
-
-6) Kod yozish qoidalari
-  Har bir funksiya bitta vazifaga ega bo‘lsin
-  Magic number va magic string ishlatilmasin
-  Early return afzal
-  Faqat async/await (then/catch ishlatilmaydi)
-
-*/
+/* Project Standards:
+-- Logging standards
+-- Naming standards 
+      camelCase for variables, methods and functions,
+      PascalCase for classes and interfaces,
+      Kebab-case for file and folder names,
+      SNAKE_CASE for constants  LIKE SOME_CONSTANT
+-- Error handling standards
+        
+-- Code structure and organization  
+       */
 
 
+/**
+ * 
+ *  Most used Different API types:
+ * Traditional API
+ * Rest. API
+ * GraphQL API
+ * gRPC API
+ */

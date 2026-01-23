@@ -98,3 +98,23 @@
  * GraphQL API
  * gRPC API
  */
+
+//Task I
+function majorityElement(arr: number[]): number | null {
+  const count: Record<number, number> = {};
+  let maxCount = 0;
+  let result: number | null = null;
+
+  for (const num of arr) {
+    count[num] = (count[num] ?? 0) + 1;
+
+    if (count[num] > maxCount) {
+      maxCount = count[num];
+      result = num;
+    }
+  }
+
+  return result;
+}
+
+console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); 

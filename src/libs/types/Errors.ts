@@ -18,7 +18,10 @@ export enum Message {
     NO_DATA_FOUND = "No data found.",
     CREATED_FAILED = "Failed to create the resource.",
     UPDATE_FAILED = "Failed to update the resource.",
-    DELETE_FAILED = "Failed to delete the resource."
+    DELETE_FAILED = "Failed to delete the resource.",
+    USED_NICK_PHONE = "You are inserting aleady used nick or phone!",
+    NO_MEMBER_NICK = "No member with that member nick!",
+    WRONG_PASSWORD = "Wrong password, please try again!",
 
 }
 

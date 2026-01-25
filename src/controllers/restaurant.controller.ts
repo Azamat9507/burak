@@ -4,6 +4,8 @@ import { T } from "../libs/types/common";
 import  MemberService  from '../models/Member.service';
 import { LoginInput, MemberInput } from '../libs/types/member';
 
+const memberService = new MemberService(); //instance here to use in all methods
+
 //Home
 const restaurantController: T = {};
 restaurantController.goHome = (req: Request, res:Response) => {
@@ -34,41 +36,33 @@ restaurantController.getSignup = (req: Request, res:Response) => {
     }  
 };
 
-restaurantController.processLogin = async (req: Request, res:Response) => {
-    try {
-        console.log("processLogin");
-        console.log("body", req.body);
-        const input: LoginInput = req.body;
+restaurantController.processSignup = async (req: Request, res: Response) => {
+  try {
+    console.log("processSignup");
 
-        const memberService  = new MemberService();
-        const result = await memberService.processLogin(input);
+    const newMember: MemberInput = req.body;
+    newMember.memberType = MemberType.RESTAURANT;
+    const result = await memberService.processSignup(newMember);
+    // TODO: SESSIONS
 
-
-
-        res.send(result);
-    } catch (err){
-        console.log("Error processLogin:" ,err);
-        res.send(err);
-    }  
+    res.send(result);
+  } catch (err) {
+    console.log("Error, processSignup:", err);
+    res.send(err);
+  }
 };
 
-restaurantController.processSignup = async (req: Request, res:Response) => {
-    try {
-        console.log("processSignup");
-        console.log("req.body:", req.body);
+restaurantController.processLogin = async (req: Request, res: Response) => {
+  try {
+    console.log("processLogin");
 
-        const newMember: MemberInput = req.body;
-        newMember.memberType = MemberType.RESTAURANT;
-
-        const memberService = new MemberService();
-        const result = await memberService.processSignup(newMember);
-
-        res.send(result);
-    } catch (err){
-        console.log("Error processSignup:" ,err);
-        res.send(err);
-    }  
-};       
+    const input: LoginInput = req.body;
+    const result = await memberService.processLogin(input);
+  } catch (err) {
+    console.log("Error, processLogin:", err);
+    res.send(err);
+  }
+};
 
 
 

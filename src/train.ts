@@ -99,6 +99,8 @@
  * gRPC API
  */
 
+
+
 //Task I
 function majorityElement(arr: number[]): number | null {
   const count: Record<number, number> = {};

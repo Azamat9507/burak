@@ -102,21 +102,39 @@
 
 
 //Task I
-function majorityElement(arr: number[]): number | null {
-  const count: Record<number, number> = {};
-  let maxCount = 0;
-  let result: number | null = null;
+// function majorityElement(arr: number[]): number | null {
+//   const count: Record<number, number> = {};
+//   let maxCount = 0;
+//   let result: number | null = null;
 
-  for (const num of arr) {
-    count[num] = (count[num] ?? 0) + 1;
+//   for (const num of arr) {
+//     count[num] = (count[num] ?? 0) + 1;
 
-    if (count[num] > maxCount) {
-      maxCount = count[num];
-      result = num;
+//     if (count[num] > maxCount) {
+//       maxCount = count[num];
+//       result = num;
+//     }
+//   }
+
+//   return result;
+// }
+
+// console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); 
+
+
+// Task J
+function findLongestWord(str: string): string {
+  const words: string[] = str.split(" ");
+  let longest: string = "";
+
+  for (const word of words) {
+    if (word.length > longest.length) {
+      longest = word;
     }
   }
 
-  return result;
+  return longest;
 }
 
-console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); 
+
+console.log(findLongestWord("I came from Uzbekistan!"));

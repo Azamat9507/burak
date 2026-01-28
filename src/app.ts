@@ -27,7 +27,7 @@ app.use(
   session({
     secret: String(process.env.SESSION_SECRET), //maxfiy kalit soz
     cookie: {
-        maxAge: 1000 * 60 * 60 * 3 // 3 hours
+        maxAge: 1000 * 3600 * 6 // 6 soat
     },
     store: store, //sessionlarni saqlash uchun store
     resave: true, //agar true bolsa har requestda session yangilaydi

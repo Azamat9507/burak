@@ -26,26 +26,30 @@ public async signup(input: MemberInput): Promise<Member> {
   }
 }
 
-public async login(input: LoginInput): Promise<Member> {
+public async login(input: LoginInput): Promise<Member> { 
+  //review qilamiz:async login metodi ichida LoginInput tipidagi input ni qabul qiladi va 
+  // Member tipidagi natijani qaytaradi Promise<Member> ni qaytaradi va bu metod asinxron ishlaydi va natija kelishini kutadi
   // TODO: consider member status later
   const member = await this.memberModel
     .findOne(
-      { memberNick: input.memberNick },
-      { memberNick: 1, memberPassword: 1 }
+      { memberNick: input.memberNick }, // Filter dan foydalanib, memberNick ga mos keladigan hujjatni qidiradi
+      { memberNick: 1, memberPassword: 1 } // Projection - Faqat memberNick va memberPassword maydonlarini qaytaradi
     )
     .exec();
 
   if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
 
   const isMatch = await bcrypt.compare(
-    input.memberPassword,
-    member.memberPassword
+    input.memberPassword, // foydalanuvchi kiritgan parol 
+    member.memberPassword // bazadagi xeshlangan parol
   );
   if (!isMatch) {
     throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
   }
 
-  return await this.memberModel.findById(member._id).lean().exec();
+  return await this.memberModel.findById(member._id).lean().exec(); // member ni to'liq ma'lumotlarini qaytaradi va 
+  // lean() metodi natijani oddiy JavaScript obyekti sifatida qaytaradi | 
+  // findeById orqali member ni topadi va exec() metodi bilan so'rovni bajaradi
 }
 
 
@@ -69,10 +73,10 @@ public async login(input: LoginInput): Promise<Member> {
             }
     }
 
-    public async processLogin(input: LoginInput): Promise<Member> {
+    public async processLogin(input: LoginInput): Promise<Member> { //review qilamiz:async processLogin metodi ichida LoginInput tipidagi input ni qabul qiladi va Member tipidagi natijani qaytaradi
         const member = await this.memberModel
             .findOne( 
-                { memberNick: input.memberNick },
+                { memberNick: input.memberNick, memberType: MemberType.RESTAURANT }, // Filter dan foydalanib, memberNick va memberType ga mos keladigan hujjatni qidiradi
                 { memberNick: 1, memberPassword: 1 }
             )
             .exec();

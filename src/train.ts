@@ -123,18 +123,31 @@
 
 
 // Task K
-function countVowels(str: string): number {
-  const vowels = "aeiouAEIOU";
-  let count = 0;
+// function countVowels(str: string): number {
+//   const vowels = "aeiouAEIOU";
+//   let count = 0;
 
-  for (const char of str) {
-    if (vowels.includes(char)) {
-      count++;
-    }
-  }
+//   for (const char of str) {
+//     if (vowels.includes(char)) {
+//       count++;
+//     }
+//   }
 
-  return count;
+//   return count;
+// }
+
+// console.log(countVowels("string")); 
+// console.log(countVowels("I came from Uzbekistan!")); 
+
+
+// Task L
+
+function reverseSentence(sentence: string): string {
+  return sentence
+    .split(" ")
+    .map(word => word.split("").reverse().join(""))
+    .join(" ");
 }
 
-console.log(countVowels("string")); 
-console.log(countVowels("I came from Uzbekistan!")); 
+
+console.log(reverseSentence("I am MIT36 students"));

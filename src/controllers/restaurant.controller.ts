@@ -50,9 +50,9 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
     newMember.memberType = MemberType.RESTAURANT;
     const result = await memberService.processSignup(newMember);
     // SESSIONS
-    req.session.member = result;
-    req.session.save(function() {
-      res.send(result);
+    req.session.member = result; // saqlash va sessiyada member ni o'rnatish
+    req.session.save(function() { // sessiyani saqlash va callback funksiyasini chaqirish
+      res.send(result); // natijani yuborish
     });
   } catch (err) {
     console.log("Error, processSignup:", err);
@@ -87,8 +87,8 @@ restaurantController.processLogin = async (req: AdminRequest, res: Response) => 
 restaurantController.logout = async (req: AdminRequest, res: Response) => {
   try {
     console.log("logout");
-    req.session.destroy(function() {
-      res.redirect("/admin");
+    req.session.destroy(function() { // sessiyani yo'q qilish va callback funksiyasini chaqirish
+      res.redirect("/admin"); // logout dan keyin admin sahifasiga yo'naltirish | redirect nima? 
     });
   } catch (err) {
     console.log("Error, logout:", err);

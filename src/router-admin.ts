@@ -1,7 +1,7 @@
 import express from 'express';
 const routerAdmin = express.Router();
 import restaurantController from './controllers/restaurant.controller';
-
+import productController from './controllers/product.controller';
 /** Restaurant Routes */
 routerAdmin.get('/', restaurantController.goHome);
 routerAdmin
@@ -10,8 +10,12 @@ routerAdmin
 routerAdmin
 .get('/signup',restaurantController.getSignup)
 .post('/signup',restaurantController.processSignup);
-routerAdmin.get("/check-me", restaurantController.checkAuthSession);
+routerAdmin.get("/check-me", restaurantController.checkAuthSession); // 
 /** Product Routes   */
+routerAdmin.get('/product/all',productController.getAllProducts);
+routerAdmin.post('/product/create',productController.createNewProduct);
+routerAdmin.post('/product/:id',productController.updateChosenProduct);
+
 
 /** User Routes   */
 

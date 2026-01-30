@@ -1,5 +1,5 @@
-import dotenv from 'dotenv';
-dotenv.config();
+import dotenv from 'dotenv'; //dotenv kutubxonasini import qilish
+dotenv.config(); //env fayldagi o'zgaruvchilarni yuklash
 import mongoose from "mongoose";
 import app from "./app";
 

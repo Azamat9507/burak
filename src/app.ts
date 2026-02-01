@@ -32,7 +32,7 @@ app.use(
     },
     store: store, //sessionlarni saqlash uchun store
     resave: true, //agar true bolsa har requestda session yangilaydi
-    saveUninitialized: true, // true bolsa yangi session yaratadi
+    saveUninitialized: true, // true bolsa yangi session yaratadi /
   })
 );
 

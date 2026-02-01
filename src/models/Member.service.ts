@@ -83,8 +83,8 @@ public async login(input: LoginInput): Promise<Member> {
         
         if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
             const isMatch = await bcrypt.compare(
-                input.memberPassword, 
-                member.memberPassword
+                input.memberPassword, // foydalanuvchi kiritgan parol
+                member.memberPassword // bazadagi xeshlangan parol
             );
 
         console.log("isMatch:", isMatch);

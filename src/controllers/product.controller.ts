@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
 import { T } from "../libs/types/common";
-import Errors from "../libs/types/Errors";
+import Errors, { HttpCode, Message} from "../libs/types/Errors";
 import ProductService from '../models/Product.service';
+import { AdminRequest } from "../libs/types/member";
+import { ProductInput } from '../libs/types/product';
 
 const productService = new ProductService();
 
@@ -17,15 +19,30 @@ productController.getAllProducts = async (req: Request, res:Response) => {
   } 
 };
 
-productController.createNewProduct = async (req: Request, res:Response) => {
+productController.createNewProduct = async (
+  req: AdminRequest,
+  res: Response
+) => {
   try {
-      console.log("createNewProduct");
-      res.send("Product created");
-  } catch (err){
-      console.log("Error createNewProduct:" ,err);
-     if (err instanceof Errors) res.status(err.code).json(err);
+    console.log("createNewProduct");
+    if (!req.files?.length)
+      throw new Errors(HttpCode.INTERNAL_SERVER_ERROR, Message.CREATED_FAILED);
+
+    const data: ProductInput = req.body;
+    data.productImages = req.files?.map((ele) => {
+      return ele.path
+    });
+
+    await productService.createNewProduct(data);
+
+    res.send(
+      `<script> alert("Sucessful creation!"); window.location.replace('admin/product/all') </script>`
+    );
+  } catch (err) {
+    console.log("Error, createNewProduct:", err);
+    if (err instanceof Errors) res.status(err.code).json(err);
     else res.status(Errors.standard.code).json(Errors.standard);
-  } 
+  }
 };
 
 productController.updateChosenProduct = async (req: Request, res:Response) => {

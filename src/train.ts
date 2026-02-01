@@ -142,12 +142,31 @@
 
 // Task L
 
-function reverseSentence(sentence: string): string {
-  return sentence
-    .split(" ")
-    .map(word => word.split("").reverse().join(""))
-    .join(" ");
+// function reverseSentence(sentence: string): string {
+//   return sentence
+//     .split(" ")
+//     .map(word => word.split("").reverse().join(""))
+//     .join(" ");
+// }
+
+
+// console.log(reverseSentence("I am MIT36 students"));
+
+//Task M
+
+type SquareNumber = {
+  number: number;
+  square: number;
+};
+
+function getSquareNumbers(arr: number[]): SquareNumber[] {
+  return arr.map((num) => {
+    return {
+      number: num,
+      square: num * num,
+    };
+  });
 }
 
-
-console.log(reverseSentence("I am MIT36 students"));
+const result = getSquareNumbers([1, 2, 3]);
+console.log(result);

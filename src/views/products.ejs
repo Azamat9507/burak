@@ -3,7 +3,13 @@
 <body>
   <div>
     <div>PRODUCTS PAGE</div>
-    <div><%=member?.memberNick%></div>
+    <div><%=member.memberNick%></div>
+    <% products.map(function(value, key) { %> 
+      <div>
+        <h1><%= value.productName %></h1>
+        <p><%= value.productSize %></p>
+      </div>
+    <% } )%>
   </div>
 </body>
 

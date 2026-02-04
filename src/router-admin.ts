@@ -23,18 +23,21 @@ routerAdmin.get(
 );
 
 routerAdmin.post('/product/create',
-  restaurantController.verifyRestaurant,
+  restaurantController.verifyRestaurant, //Authorization uchun middleware req + member objectiga restaurant ma'lumotlarini qo'shadi
   // uploadProductImage.single("productImage"),
-  makeUploader("products").array("productImages", 5),
-  productController.createNewProduct
+  makeUploader("products").array("productImages", 5), // makeUploader bizga object qaytaradi va shu objectning array methodini chaqiramiz va 2 ta argument beramiz
+  productController.createNewProduct // productController ichidagi createNewProduct methodini chaqiramiz
 );
 
-routerAdmin.post('/product/:id',
+routerAdmin.post('/product/:id', // 
   restaurantController.verifyRestaurant,
   productController.updateChosenProduct
 );
 
-
 /** User Routes   */
+routerAdmin.get('/user/all', 
+  restaurantController.verifyRestaurant, 
+  restaurantController.getUsers
+);
 
 export default routerAdmin;

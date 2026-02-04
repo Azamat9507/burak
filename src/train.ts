@@ -154,19 +154,30 @@
 
 //Task M
 
-type SquareNumber = {
-  number: number;
-  square: number;
-};
+// type SquareNumber = {
+//   number: number;
+//   square: number;
+// };
 
-function getSquareNumbers(arr: number[]): SquareNumber[] {
-  return arr.map((num) => {
-    return {
-      number: num,
-      square: num * num,
-    };
-  });
+// function getSquareNumbers(arr: number[]): SquareNumber[] {
+//   return arr.map((num) => {
+//     return {
+//       number: num,
+//       square: num * num,
+//     };
+//   });
+// }
+
+// const result = getSquareNumbers([1, 2, 3]);
+// console.log(result);
+
+// Task N
+
+function palindromCheck(str: string): boolean {
+  const reversed: string = str.split("").reverse().join("");
+  return str === reversed;
 }
 
-const result = getSquareNumbers([1, 2, 3]);
-console.log(result);
+// tekshirish
+console.log(palindromCheck("dad")); // true
+console.log(palindromCheck("son")); // false

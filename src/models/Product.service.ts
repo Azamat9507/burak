@@ -14,7 +14,8 @@ class ProductService {
 
   /* SSR */
   public async getAllProducts(): Promise<Product[]> {
-    const result = await this.productModel.find().exec();
+    const result = await this.productModel.find().exec(); //schema dan olingan model orqali 
+    // barcha product larni olish uchun find() metodi chaqiriladi va exec() metodi bilan so'rov bajariladi
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
     return result;

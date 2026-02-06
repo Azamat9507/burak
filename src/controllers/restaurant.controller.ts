@@ -50,7 +50,7 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
       throw new Errors(HttpCode.BAD_REQUEST, Message.SOMETHING_WENT_WRONG);
 
     const newMember: MemberInput = req.body;
-    newMember.memberImage = file?.path; // fayl yo'lini memberImage ga o'rnatish
+    newMember.memberImage = file?.path.replace(/\\/g, "/");// fayl yo'lini memberImage ga o'rnatish
     newMember.memberType = MemberType.RESTAURANT;
     const result = await memberService.processSignup(newMember);
     // SESSIONS
@@ -103,9 +103,9 @@ restaurantController.logout = async (req: AdminRequest, res: Response) => {
 restaurantController.getUsers = async (req: Request, res:Response) => {
   try {
       console.log("getUsers");
-      const result = await memberService.getUsers();
+      const result = await memberService.getUsers(); // memberService ichidagi getUsers methodini chaqiramiz va natijani result o'zgaruvchisiga saqlaymiz
       console.log("result:", result);
-      res.render("users", { users: result });
+      res.render("users", { users: result }); // Nimani render qilyapti? 
   } catch (err){
       console.log("Error getUsers:" ,err);
       res.redirect("/admin/login");
@@ -144,7 +144,7 @@ restaurantController.verifyRestaurant = (
   res: Response,
   next: NextFunction
 ) => {
-  if (req.session?.member?.memberType === MemberType.RESTAURANT) {
+  if (req.session?.member?.memberType === MemberType.RESTAURANT) { // agar sessiyada member mavjud bo'lsa va uning memberType RESTAURANT ga teng bo'lsa 
     req.member = req.session.member;
     next();
   } else {

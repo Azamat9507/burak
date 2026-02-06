@@ -13,7 +13,7 @@ productController.getAllProducts = async (req: Request, res:Response) => {
       console.log("getAllProducts");
       const data = await productService.getAllProducts();
       // console.log(data)
-      res.render("products", { products: data });
+      res.render("products", { products: data }); //
   } catch (err){
       console.log("Error getAllProducts:" ,err);
      if (err instanceof Errors) res.status(err.code).json(err);
@@ -23,7 +23,7 @@ productController.getAllProducts = async (req: Request, res:Response) => {
 
 productController.createNewProduct = async (
   req: AdminRequest,
-  res: Response
+  res: Response // async funksiya
 ) => {
   try {
     console.log("createNewProduct");

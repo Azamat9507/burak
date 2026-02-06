@@ -173,11 +173,28 @@
 
 // Task N
 
-function palindromCheck(str: string): boolean {
-  const reversed: string = str.split("").reverse().join("");
-  return str === reversed;
+// function palindromCheck(str: string): boolean {
+//   const reversed: string = str.split("").reverse().join("");
+//   return str === reversed;
+// }
+
+
+// console.log(palindromCheck("dad")); // true
+// console.log(palindromCheck("son")); // false
+
+//task - O
+
+function calculateSumOfNumbers(arr: any[]): number {
+  let sum = 0;
+
+  arr.forEach((item) => {
+    if (typeof item === "number") {
+      sum += item;
+    }
+  });
+
+  return sum;
 }
 
-// tekshirish
-console.log(palindromCheck("dad")); // true
-console.log(palindromCheck("son")); // false
+
+console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35])); 

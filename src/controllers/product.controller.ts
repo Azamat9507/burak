@@ -36,14 +36,16 @@ productController.createNewProduct = async (
     });
 
     await productService.createNewProduct(data);
-
     res.send(
-      `<script> alert("Sucessful creation!"); window.location.replace('admin/product/all') </script>`
+      `<script> alert("Sucessful creation!"); window.location.replace('/admin/product/all') </script>`
     );
   } catch (err) {
     console.log("Error, createNewProduct:", err);
-    if (err instanceof Errors) res.status(err.code).json(err);
-    else res.status(Errors.standard.code).json(Errors.standard);
+    const message =
+      err instanceof Error ? err.message : Message.SOMETHING_WENT_WRONG;
+    res.send(
+      `<script> alert("${message}"); window.location.replace('/admin/product/all') </script>`
+    );
   }
 };
 

@@ -1,7 +1,7 @@
 import MemberModel from "../schema/Member.model";
 import { Member, MemberInput, LoginInput, UpdateMemberInput } from "../libs/types/member";
 import Errors, { HttpCode, Message} from "../libs/types/Errors";
-import { MemberType } from "../libs/enums/member.enum";
+import { MemberStatus, MemberType } from "../libs/enums/member.enum";
 import * as bcrypt from 'bcrypt';
 import { shapeIntoMongooseObjectId } from "../libs/types/config";
 
@@ -30,27 +30,33 @@ class MemberService {
   public async login(input: LoginInput): Promise<Member> { 
     //review qilamiz:async login metodi ichida LoginInput tipidagi input ni qabul qiladi va 
     // Member tipidagi natijani qaytaradi Promise<Member> ni qaytaradi va bu metod asinxron ishlaydi va natija kelishini kutadi
-    // TODO: consider member status later
     const member = await this.memberModel
       .findOne(
-        { memberNick: input.memberNick }, // Filter dan foydalanib, memberNick ga mos keladigan hujjatni qidiradi
-        { memberNick: 1, memberPassword: 1 } // Projection - Faqat memberNick va memberPassword maydonlarini qaytaradi
+        {
+          memberNick: input.memberNick,
+          memberStatus: { $ne: MemberStatus.DELETE },
+        },
+        { memberNick: 1, memberPassword: 1, memberStatus: 1 }
       )
       .exec();
 
     if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
+    else if (member.memberStatus === MemberStatus.BLOCK) {
+      throw new Errors(HttpCode.FORBIDDEN, Message.BLOCKED_USER);
+    }
+
+    console.log("member:", member);
 
     const isMatch = await bcrypt.compare(
-      input.memberPassword, // foydalanuvchi kiritgan parol 
-      member.memberPassword // bazadagi xeshlangan parol
+      input.memberPassword,
+      member.memberPassword
     );
+
     if (!isMatch) {
       throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
     }
 
-    return await this.memberModel.findById(member._id).lean().exec(); // member ni to'liq ma'lumotlarini qaytaradi va 
-    // lean() metodi natijani oddiy JavaScript obyekti sifatida qaytaradi | 
-    // findeById orqali member ni topadi va exec() metodi bilan so'rovni bajaradi
+    return await this.memberModel.findById(member._id).lean().exec();
   }
 
 

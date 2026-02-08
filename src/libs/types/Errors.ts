@@ -22,6 +22,7 @@ export enum Message {
     DELETE_FAILED = "Failed to delete the resource.",
     USED_NICK_PHONE = "You are inserting aleady used nick or phone!",
     NO_MEMBER_NICK = "No member with that member nick!",
+    BLOCKED_USER = "You have been blocked, contact restaurant please",
     WRONG_PASSWORD = "Wrong password, please try again!",
     NOT_AUTHENTICATED = "You are not authenticated. Please login first!"
 }

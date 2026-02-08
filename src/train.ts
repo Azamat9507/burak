@@ -184,17 +184,26 @@
 
 //task - O
 
-function calculateSumOfNumbers(arr: any[]): number {
-  let sum = 0;
+// function calculateSumOfNumbers(arr: any[]): number {
+//   let sum = 0;
 
-  arr.forEach((item) => {
-    if (typeof item === "number") {
-      sum += item;
-    }
-  });
+//   arr.forEach((item) => {
+//     if (typeof item === "number") {
+//       sum += item;
+//     }
+//   });
 
-  return sum;
+//   return sum;
+// }
+
+
+// console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35])); 
+
+// task - P
+
+function objectToArray(obj: { [key: string]: any }): [string, any][] {
+  return Object.entries(obj);
 }
 
 
-console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35])); 
+console.log(objectToArray({ a: 10, b: 20 }));

@@ -201,9 +201,18 @@
 
 // task - P
 
-function objectToArray(obj: { [key: string]: any }): [string, any][] {
-  return Object.entries(obj);
+// function objectToArray(obj: { [key: string]: any }): [string, any][] {
+//   return Object.entries(obj);
+// }
+
+
+// console.log(objectToArray({ a: 10, b: 20 }));
+
+// task - Q
+
+function hasProperty(obj: object, key: string): boolean {
+  return key in obj;
 }
 
-
-console.log(objectToArray({ a: 10, b: 20 }));
+console.log(hasProperty({ name: "BMW", model: "M3" }, "model"));
+console.log(hasProperty({ name: "BMW", model: "M3" }, "year"));  

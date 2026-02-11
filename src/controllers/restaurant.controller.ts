@@ -88,16 +88,20 @@ restaurantController.processLogin = async (req: AdminRequest, res: Response) => 
   }
 };
 
+console.log("Keldi");
+
 restaurantController.logout = async (req: AdminRequest, res: Response) => {
   try {
     console.log("logout");
     req.session.destroy(function() { // sessiyani yo'q qilish va callback funksiyasini chaqirish
       res.redirect("/admin"); // logout dan keyin admin sahifasiga yo'naltirish | redirect nima? 
     });
+    console.log("Keldi 2");
   } catch (err) {
     console.log("Error, logout:", err);
     res.redirect("/admin");
   }
+  
 };
 
 restaurantController.getUsers = async (req: Request, res:Response) => {

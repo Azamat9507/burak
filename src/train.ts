@@ -210,9 +210,31 @@
 
 // task - Q
 
-function hasProperty(obj: object, key: string): boolean {
-  return key in obj;
+// function hasProperty(obj: object, key: string): boolean {
+//   return key in obj;
+// }
+
+// console.log(hasProperty({ name: "BMW", model: "M3" }, "model"));
+// console.log(hasProperty({ name: "BMW", model: "M3" }, "year"));  
+
+
+function missingNumber(arr: number[]): number {
+  const n = arr.length;
+
+  const expectedSum = (n * (n + 1)) / 2;
+
+  const actualSum = arr.reduce((sum, num) => sum + num, 0);
+
+  return expectedSum - actualSum;
 }
 
-console.log(hasProperty({ name: "BMW", model: "M3" }, "model"));
-console.log(hasProperty({ name: "BMW", model: "M3" }, "year"));  
+
+console.log(missingNumber([3, 0, 1]));
+
+// Task - 
+
+function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
+  return [...arr1, ...arr2].sort((a, b) => a - b);
+}
+
+console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));

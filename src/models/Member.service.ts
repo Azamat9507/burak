@@ -28,7 +28,7 @@ class MemberService {
   }
 
   public async login(input: LoginInput): Promise<Member> { 
-    //review qilamiz:async login metodi ichida LoginInput tipidagi input ni qabul qiladi va 
+    //async login metodi ichida LoginInput tipidagi input ni qabul qiladi va 
     // Member tipidagi natijani qaytaradi Promise<Member> ni qaytaradi va bu metod asinxron ishlaydi va natija kelishini kutadi
     const member = await this.memberModel
       .findOne(

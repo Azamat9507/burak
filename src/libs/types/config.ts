@@ -1,3 +1,4 @@
+export const AUTH_TIMER = 24; // 1 day
 export const MORGON_FORMAT = ':method :url :response-time [:status]\n';
 
 import mongoose from "mongoose";

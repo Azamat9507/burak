@@ -48,6 +48,12 @@ export interface UpdateMemberInput {
     memberImage?: string;
 }
 
+export interface ExtendedRequest extends Request {
+  member: Member;
+  file: Express.Multer.File;
+  files: Express.Multer.File[];
+}
+
 export interface AdminRequest extends Request {
     member: Member;
     session: Session & { member: Member };

@@ -257,3 +257,40 @@ function chunkArray(arr: number[], size: number): number[][] {
 console.log(
   chunkArray([1,2,3,4,5,6,7,8,9,10], 3)
 );
+
+// task - X
+
+function countOccurrences(obj: any, key: string): number {
+  let count = 0;
+
+  function traverse(current: any) {
+    if (typeof current !== "object" || current === null) return;
+
+    for (const k in current) {
+      if (k === key) {
+        count++;
+      }
+
+      // Agar qiymat object bo‘lsa, ichiga kiradi va tekshiradi
+      if (typeof current[k] === "object") {
+        traverse(current[k]);
+      }
+    }
+  }
+
+  traverse(obj);
+  return count;
+}
+
+console.log(
+  countOccurrences(
+    {
+      model: "Bugatti",
+      steer: {
+        model: "HANKOOK",
+        size: 30
+      }
+    },
+    "model"
+  )
+);

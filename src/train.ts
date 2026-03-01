@@ -294,3 +294,19 @@ console.log(
     "model"
   )
 );
+
+//task - Y 
+function findIntersection(arr1, arr2) {
+  const set1 = new Set(arr1);
+  const result = [];
+
+  for (let value of arr2) {
+    if (set1.has(value)) {
+      result.push(value);
+    }
+  }
+
+  return result;
+}
+
+console.log(findIntersection([1, 2, 3], [3, 2, 0])); 

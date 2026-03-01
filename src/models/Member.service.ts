@@ -108,7 +108,7 @@ public async getTopUsers(): Promise<Member[]> {
     .limit(4)
     .exec();
 
-  if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+ // bu yerda error keremas, chunki agar top users bo'lmasa, bo'sh array qaytaradi va bu holatni xato deb hisoblamaymiz
 
   return result;
 }

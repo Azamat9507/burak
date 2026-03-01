@@ -296,9 +296,9 @@ console.log(
 );
 
 //task - Y 
-function findIntersection(arr1, arr2) {
+function findIntersection(arr1: number[], arr2: number[]): number[] {
   const set1 = new Set(arr1);
-  const result = [];
+  const result: number[] = [];
 
   for (let value of arr2) {
     if (set1.has(value)) {
@@ -309,4 +309,4 @@ function findIntersection(arr1, arr2) {
   return result;
 }
 
-console.log(findIntersection([1, 2, 3], [3, 2, 0])); 
+console.log(findIntersection([1, 2, 3], [3, 2, 0]));

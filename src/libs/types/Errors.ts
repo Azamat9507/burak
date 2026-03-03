@@ -26,6 +26,7 @@ export enum Message {
     BLOCKED_USER = "You have been blocked, contact restaurant please",
     WRONG_PASSWORD = "Wrong password, please try again!",
     NOT_AUTHENTICATED = "You are not authenticated. Please login first!",
+    CREATE_FAILED = "CREATE_FAILED",
     
 }
 

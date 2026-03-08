@@ -49,7 +49,7 @@ class OrderService {
     orderId: ObjectId,
     input: OrderItemInput[]
   ): Promise<void> {
-    const promisedList = input.map( async (item: OrderItemInput) => {
+    const promisedList = input.map( async (item: OrderItemInput) => { // input arrayidagi har bir item uchun orderItemModel ga yangi document yaratish
       item.orderId = orderId;
       item.productId = shapeIntoMongooseObjectId(item.productId);
       await this.orderItemModel.create(item);
@@ -68,25 +68,25 @@ class OrderService {
     const matches = { memberId: memberId, orderStatus: inquiry.orderStatus };
 
     const result = await this.orderModel
-      .aggregate([
-        { $match: matches },
+      .aggregate([ // nega aggregate() metodi ishlatiladi? chunki bizga orderItems va productData ni ham qo'shish kerak, bu esa join qilishni talab qiladi va aggregate() metodi join qilish uchun qulayroq
+        { $match: matches }, 
         { $sort: { updatedAt: -1 } },
         { $skip: (inquiry.page - 1) * inquiry.limit },
         { $limit: inquiry.limit },
         {
-          $lookup: {
-            from: "orderItems",
-            localField: "_id",
-            foreignField: "orderId",
-            as: "orderItems",
+          $lookup: { // orderItems ni orderId ga qarab orderItems kolleksiyasidan olib kelish
+            from: "orderItems", // orderItems kolleksiyasi bilan join qilish
+            localField: "_id", // orderModel dagi _id ni
+            foreignField: "orderId", // orderItems dagi orderId bilan solishtirish
+            as: "orderItems", // natijani orderItems nomli array sifatida saqlash
           },
         },
         {
           $lookup: {
-            from: "products",
-            localField: "orderItems.productId",
-            foreignField: "_id",
-            as: "productData",
+            from: "products", // products kolleksiyasi bilan join qilish
+            localField: "orderItems.productId", // orderItems array ichidagi productId larni
+            foreignField: "_id", // products kolleksiyasidagi _id lar bilan solishtirish
+            as: "productData", // natijani productData nomli array sifatida saqlash
           },
         },
       ])
@@ -106,7 +106,7 @@ class OrderService {
     orderStatus = input.orderStatus;
 
   const result = await this.orderModel
-    .findOneAndUpdate(
+    .findOneAndUpdate( // orderId va memberId ga mos keladigan order ni topib, uning orderStatus ni yangilash
       {
         memberId: memberId,
         _id: orderId,

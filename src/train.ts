@@ -327,3 +327,11 @@ function sumEvens(arr: number[]): number {
 
 console.log(sumEvens([1, 2, 3])); 
 console.log(sumEvens([1, 2, 3, 2]));
+
+// task - ZB
+
+function randomBetween(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+console.log(randomBetween(30, 50));

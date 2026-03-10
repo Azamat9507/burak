@@ -335,3 +335,11 @@ function randomBetween(min: number, max: number): number {
 }
 
 console.log(randomBetween(30, 50));
+
+//task - ZC
+function celsiusToFahrenheit(celsius: number): number {
+  return (celsius * 9) / 5 + 32;
+}
+
+console.log(celsiusToFahrenheit(0));
+console.log(celsiusToFahrenheit(10));
